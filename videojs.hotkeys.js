@@ -83,7 +83,7 @@ const hotkeys = function (customOptions = {}) {
       }
       const focusingPlayerTimeout = setTimeout(function () {
         player.off('useractive', cancelFocusingPlayer)
-        const activeElement = document.activeElement
+        const activeElement = globalThis.activeElement
         const controlBar = pEl.querySelector('.vjs-control-bar')
         if (activeElement && activeElement.parentElement === controlBar) {
           pEl.focus()
@@ -111,7 +111,7 @@ const hotkeys = function (customOptions = {}) {
     // When controls are disabled, hotkeys will be disabled as well
     if (player.controls()) {
       // Don't catch keys if any control buttons are focused, unless alwaysCaptureHotkeys is true
-      const activeEl = document.activeElement
+      const activeEl = globalThis.activeElement
       if (
         options.alwaysCaptureHotkeys
         || (options.captureDocumentHotkeys && options.documentHotkeysFocusElementFilter(activeEl))
@@ -264,7 +264,7 @@ const hotkeys = function (customOptions = {}) {
     const activeEl = options.enableHoverScroll
       // If we leave this undefined then it can match non-existent elements below
       ? 0
-      : document.activeElement
+      : globalThis.activeElement
 
     // When controls are disabled, hotkeys will be disabled as well
     if (
@@ -342,10 +342,10 @@ const hotkeys = function (customOptions = {}) {
     const capDocHK = function (event) {
       keyDown(event)
     }
-    document.addEventListener('keydown', capDocHK)
+    globalThis.addEventListener('keydown', capDocHK)
 
     this.dispose = function () {
-      document.removeEventListener('keydown', capDocHK)
+      globalThis.removeEventListener('keydown', capDocHK)
     }
   } else {
     player.on('keydown', keyDown)
