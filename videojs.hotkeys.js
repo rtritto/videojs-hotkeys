@@ -109,7 +109,7 @@
           player.off('useractive', cancelFocusingPlayer)
           var activeElement = doc.activeElement
           var controlBar = pEl.querySelector('.vjs-control-bar')
-          if (activeElement && activeElement.parentElement == controlBar) {
+          if (activeElement && activeElement.parentElement === controlBar) {
             pEl.focus()
           }
         }, 10)
@@ -140,10 +140,10 @@
         if (
           alwaysCaptureHotkeys ||
           (captureDocumentHotkeys && documentHotkeysFocusElementFilter(activeEl)) ||
-          activeEl == pEl ||
-          activeEl == pEl.querySelector('.vjs-tech') ||
-          activeEl == pEl.querySelector('.vjs-control-bar') ||
-          activeEl == pEl.querySelector('.iframeblocker')
+          activeEl === pEl ||
+          activeEl === pEl.querySelector('.vjs-tech') ||
+          activeEl === pEl.querySelector('.vjs-control-bar') ||
+          activeEl === pEl.querySelector('.iframeblocker')
         ) {
           switch (checkKeys(event, player)) {
             // Spacebar toggles play/pause
@@ -277,12 +277,12 @@
 
     var doubleClick = function doubleClick(event) {
       // Video.js added double-click fullscreen in 7.1.0
-      if (videojsVer != null && videojsVer <= '7.1.0') {
+      if (videojsVer !== null && videojsVer <= '7.1.0') {
         // When controls are disabled, hotkeys will be disabled as well
         if (player.controls()) {
           // Don't catch clicks if any control buttons are focused
           var activeEl = event.relatedTarget || event.toElement || doc.activeElement
-          if (activeEl == pEl || activeEl == pEl.querySelector('.vjs-tech') || activeEl == pEl.querySelector('.iframeblocker')) {
+          if (activeEl === pEl || activeEl === pEl.querySelector('.vjs-tech') || activeEl === pEl.querySelector('.iframeblocker')) {
             if (enableFull) {
               if (player.isFullscreen()) {
                 player.exitFullscreen()
@@ -297,7 +297,7 @@
 
     var volumeHover = false
     var volumeSelector = pEl.querySelector('.vjs-volume-menu-button') || pEl.querySelector('.vjs-volume-panel')
-    if (volumeSelector != null) {
+    if (volumeSelector !== null) {
       volumeSelector.onmouseover = function () {
         volumeHover = true
       }
@@ -318,10 +318,10 @@
       if (player.controls()) {
         if (
           alwaysCaptureHotkeys ||
-          activeEl == pEl ||
-          activeEl == pEl.querySelector('.vjs-tech') ||
-          activeEl == pEl.querySelector('.iframeblocker') ||
-          activeEl == pEl.querySelector('.vjs-control-bar') ||
+          activeEl === pEl ||
+          activeEl === pEl.querySelector('.vjs-tech') ||
+          activeEl === pEl.querySelector('.iframeblocker') ||
+          activeEl === pEl.querySelector('.vjs-control-bar') ||
           volumeHover
         ) {
           if (enableVolumeScroll) {
@@ -329,9 +329,9 @@
             var delta = Math.max(-1, Math.min(1, event.wheelDelta || -event.detail))
             event.preventDefault()
 
-            if (delta == 1) {
+            if (delta === 1) {
               player.volume(player.volume() + volumeStep)
-            } else if (delta == -1) {
+            } else if (delta === -1) {
               player.volume(player.volume() - volumeStep)
             }
           }
@@ -419,7 +419,7 @@
     }
 
     function silencePromise(value) {
-      if (value != null && typeof value.then === 'function') {
+      if (value !== null && typeof value.then === 'function') {
         value.then(null, function (e) { })
       }
     }
