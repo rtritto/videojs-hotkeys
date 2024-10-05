@@ -353,8 +353,6 @@ const hotkeys = function (customOptions = {}) {
 
   player.on('mousewheel', mouseScroll)
   player.on('DOMMouseScroll', mouseScroll)
-
-  return this
 }
 
 videojs.registerPlugin('hotkeys', hotkeys)
